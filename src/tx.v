@@ -4,7 +4,7 @@ module tx(
     input clk,
     
     input[7:0] data_in,
-    output reg data_out, //without reg you'll get an error 'cause you'll assing wire(default net type for I/O) in always block 
+    output reg data_out, 
     output reg done = 1'b0 , 
     output busy
 );
