@@ -40,10 +40,7 @@ module tx(
                 baud_count <= baud_count + 1 ;
             end 
         end 
-        // else begin
-        //     baud_count <= 0 ; 
-        //     baud_tick <= 4'h0 ;
-        // end
+        
     end 
 
     // those baud ticks will control the process of sending
