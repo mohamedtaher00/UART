@@ -4,10 +4,10 @@ module tx_tb ;
 
     reg clk_tb ;
     reg tx_en_tb ;
-    reg[7:0] data_in_tb ;
+    reg [7:0] data_in_tb ;
     reg rst_tb ;
 
-    wire[7:0] data_out_tb ;
+    wire data_out_tb ;
 
     tx DUT (.clk(clk_tb), .rst(rst_tb), .data_in(data_in_tb), .tx_en(tx_en_tb), .data_out(data_out_tb)) ;
 
