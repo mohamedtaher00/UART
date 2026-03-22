@@ -74,7 +74,7 @@ module tx #(parameter baud_rate = 9600, parameter clk_freq = 100000000) (
             data_out = 1'b1 ;
         end 
     end 
-
-    // for busy, done flags they're for the APB interface, we'll figure them out iA 
+    
+    assign busy = tx_en && !done;
 
 endmodule
