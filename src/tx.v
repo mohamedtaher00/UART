@@ -46,11 +46,7 @@ module tx(
 
     // those baud ticks will control the process of sending
     always @(*) begin 
-        if (rst) begin 
-
-            data_out = 1'b 1;
-        end 
-        else if(tx_en) begin 
+         if(tx_en) begin 
             case(baud_tick) 
             4'h0 : begin 
                 if (done)
