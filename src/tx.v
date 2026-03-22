@@ -11,7 +11,7 @@ module tx(
     //parameter baud_period = 104;
     reg[31:0] baud_count = 0;
     reg[3:0] baud_tick = 0 ;
-    reg[7:0] data_in_tx;
+    wire [7:0] data_in_tx;
 
     assign data_in_tx = data_in ;
 
