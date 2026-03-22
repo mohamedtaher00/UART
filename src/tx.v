@@ -1,4 +1,4 @@
-module tx(
+module tx #(parameter baud_rate = 9600, parameter clk_freq = 100000000) (
     input tx_en, 
     input rst, 
     input clk,
@@ -8,14 +8,14 @@ module tx(
     output reg done = 1'b0 , 
     output busy
 );
-    //parameter baud_period = 104;
+    //parameter baud_period = 104; // baud_period = T * (comparison + 1) -> comparison = (baud_period/T) - 1 = (clk_freq./baud_rate) - 1
     reg[31:0] baud_count = 0;
     reg[3:0] baud_tick = 0 ;
     wire [7:0] data_in_tx;
 
     assign data_in_tx = data_in ;
 
-    
+    localparam baud_threshold = (clk_freq/baud_rate) - 1 ;     
     //baud counter -> to derive baud rate from the system's clock 
     always @(posedge clk) begin 
         if(rst) begin
@@ -25,7 +25,7 @@ module tx(
         end 
         else if (tx_en) begin
             //can we assert the busy flag here?
-            if (baud_count == 32'h 0000_28B0) begin
+            if (baud_count == baud_threshold ) begin
                 if(baud_tick == 4'h9) begin
                     baud_count <= 0 ;
                     done <= 1'b1 ;
