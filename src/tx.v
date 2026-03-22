@@ -21,6 +21,7 @@ module tx(
         if(rst) begin
             baud_count <= 0 ;
             baud_tick <= 0 ;
+            done <= 1'b0 ;
         end 
         else if (tx_en) begin
             //can we assert the busy flag here?
@@ -46,7 +47,7 @@ module tx(
     // those baud ticks will control the process of sending
     always @(*) begin 
         if (rst) begin 
-            done = 1'b0 ;
+
             data_out = 1'b 1;
         end 
         else if(tx_en) begin 
